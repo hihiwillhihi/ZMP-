@@ -2,100 +2,150 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ATC Clearance Builder</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f4; }
-    h1 { text-align: center; }
-    .form-section { background: white; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-    label { display: block; margin-top: 10px; }
-    select, input { width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc; }
-    button { margin-top: 20px; padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; background: #0077cc; color: white; cursor: pointer; }
-    button:hover { background: #005fa3; }
-    #output { margin-top: 30px; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); white-space: pre-line; font-family: monospace; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f0f0f0;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    select, input {
+      width: 250px;
+      padding: 5px;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    #output {
+      margin-top: 20px;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #ccc;
+      white-space: pre-wrap;
+    }
+    #airportFullName {
+      margin-top: 5px;
+      font-weight: bold;
+      color: #007bff;
+    }
   </style>
 </head>
 <body>
   <h1>ATC Clearance Builder</h1>
-  <div class="form-section">
-    <label>Cleared to (airport):</label>
-    <input type="text" id="airport" placeholder="Enter airport ICAO (e.g., KMSP)">
 
-    <label>Departure (SID):</label>
-    <select id="departure">
-      <option value="COULT SEVEN">COULT SEVEN</option>
-      <option value="HESTIN SIX (RNAV)">HESTIN SIX (RNAV)</option>
-      <option value="KBREW TWO">KBREW TWO</option>
-      <option value="LEINY SIX (RNAV)">LEINY SIX (RNAV)</option>
-      <option value="MEADOW LAKE FIVE">MEADOW LAKE FIVE</option>
-      <option value="MINNEAPOLIS NINE">MINNEAPOLIS NINE</option>
-      <option value="ORSKY THREE">ORSKY THREE</option>
-      <option value="ROCHESTER ONE">ROCHESTER ONE</option>
-      <option value="SCHEP ONE">SCHEP ONE</option>
-      <option value="SLAYER FOUR (RNAV)">SLAYER FOUR (RNAV)</option>
-      <option value="SMERF SEVEN (RNAV)">SMERF SEVEN (RNAV)</option>
-      <option value="WLSTN SEVEN">WLSTN SEVEN</option>
-      <option value="ZMBRO SEVEN">ZMBRO SEVEN</option>
-    </select>
+  <label for="airport">Airport ICAO:</label>
+  <input type="text" id="airport" maxlength="4" placeholder="Enter ICAO code">
+  <div id="airportFullName"></div>
 
-    <label>Transition:</label>
-    <select id="transition">
-      <option value="DLL (COULT SEVEN)">DLL (COULT SEVEN)</option>
-      <option value="COULT (COULT SEVEN)">COULT (COULT SEVEN)</option>
-      <option value="DABOY (HESTIN SIX)">DABOY (HESTIN SIX)</option>
-      <option value="ZZEEE (HESTIN SIX)">ZZEEE (HESTIN SIX)</option>
-      <option value="HESTIN (HESTIN SIX)">HESTIN (HESTIN SIX)</option>
-      <option value="FAR (KBREW TWO)">FAR (KBREW TWO)</option>
-      <option value="KBREW (KBREW TWO)">KBREW (KBREW TWO)</option>
-      <option value="LEINY (LEINY SIX)">LEINY (LEINY SIX)</option>
-      <option value="GRB (WLSTN SEVEN)">GRB (WLSTN SEVEN)</option>
-      <option value="WLSTN (WLSTN SEVEN)">WLSTN (WLSTN SEVEN)</option>
-      <option value="ODI (ZMBRO SEVEN)">ODI (ZMBRO SEVEN)</option>
-      <option value="ZMBRO (ZMBRO SEVEN)">ZMBRO (ZMBRO SEVEN)</option>
-      <option value="ALO (ROCHESTER ONE)">ALO (ROCHESTER ONE)</option>
-      <option value="RST (ROCHESTER ONE)">RST (ROCHESTER ONE)</option>
-      <option value="ONTIJ (ORSKY THREE)">ONTIJ (ORSKY THREE)</option>
-      <option value="ORSKY (ORSKY THREE)">ORSKY (ORSKY THREE)</option>
-      <option value="RXANN (SCHEP ONE)">RXANN (SCHEP ONE)</option>
-      <option value="SCHEP (SCHEP ONE)">SCHEP (SCHEP ONE)</option>
-      <option value="TEYOU (SLAYER FOUR)">TEYOU (SLAYER FOUR)</option>
-      <option value="SLAYR (SLAYER FOUR)">SLAYR (SLAYER FOUR)</option>
-      <option value="SMERF (SMERF SEVEN)">SMERF (SMERF SEVEN)</option>
-    </select>
+  <label for="sid">SID:</label>
+  <select id="sid">
+    <option value="">--Select SID--</option>
+    <option value="COULT7">COULT SEVEN</option>
+    <option value="HESTIN6">HESTIN SIX (RNAV)</option>
+    <option value="KBREW2">KBREW TWO</option>
+    <option value="LEINY6">LEINY SIX (RNAV)</option>
+    <option value="MEADOW5">MEADOW LAKE FIVE</option>
+    <option value="MINNEAPOLIS9">MINNEAPOLIS NINE</option>
+    <option value="ORSKY3">ORSKY THREE</option>
+    <option value="ROCHESTER1">ROCHESTER ONE</option>
+    <option value="SCHEP1">SCHEP ONE</option>
+    <option value="SLAYER4">SLAYER FOUR (RNAV)</option>
+    <option value="SMERF7">SMERF SEVEN (RNAV)</option>
+    <option value="WLSTN7">WLSTN SEVEN</option>
+    <option value="ZMBRO7">ZMBRO SEVEN</option>
+  </select>
 
-    <label>Initial Altitude:</label>
-    <input type="text" id="altitude" placeholder="e.g., 5000">
+  <label for="transition">Transition:</label>
+  <select id="transition">
+    <option value="">--Select Transition--</option>
+    <option value="LEINY">LEINY (LEINY6)</option>
+    <option value="SMERF">SMERF (SMERF7)</option>
+    <option value="FAR">FAR (KBREW2)</option>
+    <option value="KBREW">KBREW (KBREW2)</option>
+    <option value="GRB">GRB (WLSTN7)</option>
+    <option value="WLSTN">WLSTN (WLSTN7)</option>
+    <option value="DLL">DLL (COULT7)</option>
+    <option value="COULT">COULT (COULT7)</option>
+    <option value="ODI">ODI (ZMBRO7)</option>
+    <option value="ZMBRO">ZMBRO (ZMBRO7)</option>
+    <option value="ALO">ALO (ROCHESTER1)</option>
+    <option value="RST">RST (ROCHESTER1)</option>
+    <option value="ONTIJ">ONTIJ (ORSKY3)</option>
+    <option value="ORSKY">ORSKY (ORSKY3)</option>
+    <option value="RXANN">RXANN (SCHEP1)</option>
+    <option value="SCHEP">SCHEP (SCHEP1)</option>
+    <option value="DABOY">DABOY (HESTIN6)</option>
+    <option value="ZZEEE">ZZEEE (HESTIN6)</option>
+    <option value="HESTIN">HESTIN (HESTIN6)</option>
+    <option value="TEYOU">TEYOU (SLAYER4)</option>
+    <option value="SLAYR">SLAYR (SLAYER4)</option>
+    <option value="NONE">No Transition (MEADOW5)</option>
+  </select>
 
-    <label>Departure Frequency:</label>
-    <input type="text" id="frequency" placeholder="e.g., 124.85">
+  <label for="climb">Climb:</label>
+  <input type="text" id="climb" placeholder="e.g., FL200">
 
-    <label>Squawk:</label>
-    <input type="text" id="squawk" placeholder="e.g., 4567">
+  <label for="depFreq">Departure Frequency:</label>
+  <input type="text" id="depFreq" placeholder="e.g., 119.1">
 
-    <button id="generateBtn">Generate Clearance</button>
-  </div>
+  <label for="squawk">Squawk:</label>
+  <input type="text" id="squawk" placeholder="e.g., 1234">
+
+  <button id="generate">Generate Clearance</button>
 
   <div id="output"></div>
 
   <script>
-    document.getElementById("generateBtn").addEventListener("click", function() {
-      const airport = document.getElementById("airport").value.trim();
-      const departure = document.getElementById("departure").value;
-      const transition = document.getElementById("transition").value;
-      const altitude = document.getElementById("altitude").value.trim();
-      const frequency = document.getElementById("frequency").value.trim();
-      const squawk = document.getElementById("squawk").value.trim();
+    // AirportDB API integration
+    const airportInput = document.getElementById("airport");
+    const airportFullNameDiv = document.getElementById("airportFullName");
+    const apiToken = "e421959a7daa469a09abe75fdc48efea9e92a91e9cab4e2643e879a3b5c4140587b8b16db6f9ae0d84418414ec522555";
 
-      if (!airport || !altitude || !frequency || !squawk) {
-        alert("Please fill out all fields.");
-        return;
+    airportInput.addEventListener("input", () => {
+      const icao = airportInput.value.toUpperCase();
+
+      if (icao.length === 4) {
+        fetch(`https://airportdb.io/api/v1/airport/${icao}?apiToken=${apiToken}`)
+          .then(response => response.json())
+          .then(data => {
+            airportFullNameDiv.innerText = data.name || "Airport not found";
+          })
+          .catch(error => {
+            airportFullNameDiv.innerText = "Error fetching airport info";
+            console.error(error);
+          });
+      } else {
+        airportFullNameDiv.innerText = "";
       }
+    });
 
-      const clearance = `Cleared to ${airport} airport
-${departure} departure${transition ? ', ' + transition + ' transition,' : ''}
-then as filed
-Climb via SID except maintain ${altitude} (expect final FLXXX)
-Departure frequency ${frequency}
-Squawk ${squawk}`;
+    // Generate clearance
+    document.getElementById("generate").addEventListener("click", () => {
+      const airport = airportInput.value.toUpperCase();
+      const airportName = airportFullNameDiv.innerText;
+      const sid = document.getElementById("sid").value;
+      const transition = document.getElementById("transition").value;
+      const climb = document.getElementById("climb").value;
+      const depFreq = document.getElementById("depFreq").value;
+      const squawk = document.getElementById("squawk").value;
+
+      let clearance = `Cleared to ${airportName || airport}\n`;
+      if (sid) clearance += `${sid} departure`;
+      if (transition && transition !== "NONE") clearance += `, ${transition} transition`;
+      clearance += `,\nthen as filed\n`;
+      if (climb) clearance += `Climb via SID except maintain ${climb}\n`;
+      if (depFreq) clearance += `Departure frequency ${depFreq}\n`;
+      if (squawk) clearance += `Squawk ${squawk}`;
 
       document.getElementById("output").innerText = clearance;
     });
