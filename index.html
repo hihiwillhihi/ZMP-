@@ -5,124 +5,133 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ATC Clearance Builder</title>
   <style>
-    body {
-      font-family: "Noto Sans Newa", serif;
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding-top: 20px;
-      background-image: url('AN225KMSP.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
+  /* Import Roboto from Google Fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-    h1 {
-      text-align: center;
-      color: rgb(0,0,0);
-      font-size: 50px;
-      margin-bottom: 20px;
-    }
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 20px;
+    background-image: url('AN225KMSP.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 
-    .center-container {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-    }
+  h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    color: rgb(0,0,0);
+    font-size: 50px;
+    margin-bottom: 20px;
+  }
 
-    .frosted-glass {
-      width: 700px;
-      padding: 25px 30px;
-      background-color: rgba(255,255,255,0.75);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+  .center-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
 
-    .input-row {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      margin-bottom: 20px;
-    }
+  .frosted-glass {
+    width: 700px;
+    padding: 25px 30px;
+    background-color: rgba(255,255,255,0.75);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .column {
-      display: flex;
-      flex-direction: column;
-      width: 45%;
-    }
+  .input-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+  }
 
-    label {
-      margin-top: 15px;
-      font-weight: 500;
-      color: #333;
-    }
+  .column {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+  }
 
-    input, select {
-      width: 100%;
-      padding: 8px 12px;
-      margin-top: 5px;
-      border-radius: 10px;
-      border: 1px solid rgba(0,0,0,0.2);
-      background: rgba(255,255,255,0.9);
-      font-size: 0.95rem;
-    }
+  label {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    margin-top: 15px;
+    color: #333;
+  }
 
-    input:focus, select:focus {
-      outline: none;
-      border-color: #66a6ff;
-      box-shadow: 0 0 8px rgba(102, 166, 255, 0.5);
-    }
+  input, select {
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    padding: 8px 12px;
+    margin-top: 5px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.2);
+    background: rgba(255,255,255,0.9);
+    font-size: 0.95rem;
+  }
 
-    button {
-      width: 50%;
-      padding: 12px;
-      font-size: 1rem;
-      border-radius: 12px;
-      background-color: #004080;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      transition: 0.2s;
-      margin-bottom: 10px;
-    }
+  input:focus, select:focus {
+    outline: none;
+    border-color: #66a6ff;
+    box-shadow: 0 0 8px rgba(102, 166, 255, 0.5);
+  }
 
-    button:hover {
-      background-color: #0066cc;
-    }
+  button {
+    width: 50%;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 12px;
+    background-color: #004080;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+  }
 
-    #airportFullName {
-      margin-top: 5px;
-      font-weight: bold;
-      color: #007bff;
-      font-size: 0.95rem;
-    }
+  button:hover {
+    background-color: #0066cc;
+  }
 
-    #output {
-      width: 100%;
-      padding: 12px;
-      background: rgba(255,255,255,0.85);
-      border-radius: 12px;
-      border: 1px solid rgba(0,0,0,0.15);
-      white-space: pre-wrap;
-      font-family: monospace;
-      font-size: 0.95rem;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-    }
+  #airportFullName {
+    margin-top: 5px;
+    font-weight: bold;
+    color: #007bff;
+    font-size: 0.95rem;
+    font-family: 'Roboto', sans-serif;
+  }
 
-    @media (max-width: 750px) {
-      .frosted-glass { width: 90%; }
-      .input-row { flex-direction: column; align-items: center; }
-      .column { width: 90%; }
-      button { width: 70%; }
-    }
-  </style>
+  #output {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.15);
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 0.95rem;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  @media (max-width: 750px) {
+    .frosted-glass { width: 90%; }
+    .input-row { flex-direction: column; align-items: center; }
+    .column { width: 90%; }
+    button { width: 70%; }
+  }
+</style>
 </head>
 <body>
   <div class="center-container">
