@@ -13,7 +13,7 @@
       justify-content: center;
       align-items: flex-start;
       padding-top: 20px;
-      background-image: url('AN225KMSP.jpg'); /* your background */
+      background-image: url('AN225KMSP.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -116,21 +116,11 @@
       box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
     }
 
-    /* Responsive for smaller screens */
     @media (max-width: 750px) {
-      .frosted-glass {
-        width: 90%;
-      }
-      .input-row {
-        flex-direction: column;
-        align-items: center;
-      }
-      .column {
-        width: 90%;
-      }
-      button {
-        width: 70%;
-      }
+      .frosted-glass { width: 90%; }
+      .input-row { flex-direction: column; align-items: center; }
+      .column { width: 90%; }
+      button { width: 70%; }
     }
   </style>
 </head>
@@ -146,12 +136,43 @@
 
           <label for="sid">SID:</label>
           <select id="sid">
-            <!-- SID options -->
+            <option value="COULT7">COULT7</option>
+            <option value="HESTIN6">HESTIN6 (RNAV)</option>
+            <option value="KBREW2">KBREW2</option>
+            <option value="LEINY6">LEINY6 (RNAV)</option>
+            <option value="MEADOW5">MEADOW LAKE5</option>
+            <option value="MINNEAP9">MINNEAPOLIS9</option>
+            <option value="ORSKY3">ORSKY3</option>
+            <option value="ROCHESTER1">ROCHESTER1</option>
+            <option value="SCHEP1">SCHEP1</option>
+            <option value="SLAYR4">SLAYR4 (RNAV)</option>
+            <option value="SMERF7">SMERF7 (RNAV)</option>
+            <option value="WLSTN7">WLSTN7</option>
+            <option value="ZMBRO7">ZMBRO7</option>
           </select>
 
           <label for="transition">Transition:</label>
           <select id="transition">
-            <!-- Transition options -->
+            <option value="DLL (COULT7)">DLL (COULT7)</option>
+            <option value="HESTIN (HESTIN6)">HESTIN (HESTIN6)</option>
+            <option value="FAR (KBREW2)">FAR (KBREW2)</option>
+            <option value="KBREW (KBREW2)">KBREW (KBREW2)</option>
+            <option value="LEINY (LEINY6)">LEINY (LEINY6)</option>
+            <option value="TEYOU (SLAYR4)">TEYOU (SLAYR4)</option>
+            <option value="SLAYR (SLAYR4)">SLAYR (SLAYR4)</option>
+            <option value="SMERF (SMERF7)">SMERF (SMERF7)</option>
+            <option value="GRB (WLSTN7)">GRB (WLSTN7)</option>
+            <option value="WLSTN (WLSTN7)">WLSTN (WLSTN7)</option>
+            <option value="ODI (ZMBRO7)">ODI (ZMBRO7)</option>
+            <option value="ZMBRO (ZMBRO7)">ZMBRO (ZMBRO7)</option>
+            <option value="ALO (ROCHESTER1)">ALO (ROCHESTER1)</option>
+            <option value="RST (ROCHESTER1)">RST (ROCHESTER1)</option>
+            <option value="ONTIJ (ORSKY3)">ONTIJ (ORSKY3)</option>
+            <option value="ORSKY (ORSKY3)">ORSKY (ORSKY3)</option>
+            <option value="RXANN (SCHEP1)">RXANN (SCHEP1)</option>
+            <option value="SCHEP (SCHEP1)">SCHEP (SCHEP1)</option>
+            <option value="DABOY (HESTIN6)">DABOY (HESTIN6)</option>
+            <option value="ZZEEE (HESTIN6)">ZZEEE (HESTIN6)</option>
           </select>
         </div>
 
@@ -173,12 +194,31 @@
   </div>
 
   <script>
-    // Example JS for generating clearance
+    const airportInput = document.getElementById('airport');
+    const airportFullName = document.getElementById('airportFullName');
     const generateBtn = document.getElementById('generate');
     const outputDiv = document.getElementById('output');
+    const apiToken = 'e421959a7daa469a09abe75fdc48efea9e92a91e9cab4e2643e879a3b5c4140587b8b16db6f9ae0d84418414ec522555';
+
+    // Fetch airport full name when ICAO changes
+    airportInput.addEventListener('input', async () => {
+      const icao = airportInput.value.toUpperCase();
+      if(icao.length === 4){
+        try {
+          const response = await fetch(`https://airportdb.io/api/v1/airport/${icao}?apiToken=${apiToken}`);
+          if(!response.ok) throw new Error('Airport not found');
+          const data = await response.json();
+          airportFullName.textContent = data.name || '';
+        } catch(e){
+          airportFullName.textContent = 'Airport not found';
+        }
+      } else {
+        airportFullName.textContent = '';
+      }
+    });
 
     generateBtn.addEventListener('click', () => {
-      const airport = document.getElementById('airport').value.toUpperCase();
+      const airport = airportInput.value.toUpperCase();
       const sid = document.getElementById('sid').value;
       const transition = document.getElementById('transition').value;
       const climb = document.getElementById('climb').value;
