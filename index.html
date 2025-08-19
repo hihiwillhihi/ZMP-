@@ -4,116 +4,194 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ATC Clearance Builder</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: "Noto Sans Newa", serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 20px;
+      background-image: url('AN225KMSP.jpg'); /* your background */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    h1 {
+      text-align: center;
+      color: rgb(0,0,0);
+      font-size: 50px;
+      margin-bottom: 20px;
+    }
+
+    .center-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .frosted-glass {
+      width: 700px;
+      padding: 25px 30px;
+      background-color: rgba(255,255,255,0.75);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .input-row {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      width: 45%;
+    }
+
+    label {
+      margin-top: 15px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px 12px;
+      margin-top: 5px;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.2);
+      background: rgba(255,255,255,0.9);
+      font-size: 0.95rem;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #66a6ff;
+      box-shadow: 0 0 8px rgba(102, 166, 255, 0.5);
+    }
+
+    button {
+      width: 50%;
+      padding: 12px;
+      font-size: 1rem;
+      border-radius: 12px;
+      background-color: #004080;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-bottom: 10px;
+    }
+
+    button:hover {
+      background-color: #0066cc;
+    }
+
+    #airportFullName {
+      margin-top: 5px;
+      font-weight: bold;
+      color: #007bff;
+      font-size: 0.95rem;
+    }
+
+    #output {
+      width: 100%;
+      padding: 12px;
+      background: rgba(255,255,255,0.85);
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.15);
+      white-space: pre-wrap;
+      font-family: monospace;
+      font-size: 0.95rem;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    /* Responsive for smaller screens */
+    @media (max-width: 750px) {
+      .frosted-glass {
+        width: 90%;
+      }
+      .input-row {
+        flex-direction: column;
+        align-items: center;
+      }
+      .column {
+        width: 90%;
+      }
+      button {
+        width: 70%;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>ATC Clearance Builder</h1>
+  <div class="center-container">
+    <div class="frosted-glass">
+      <h1>ATC Clearance Builder</h1>
+      <div class="input-row">
+        <div class="column">
+          <label for="airport">Airport ICAO:</label>
+          <input type="text" id="airport" maxlength="4" placeholder="Enter ICAO code">
+          <div id="airportFullName"></div>
 
-  <label for="airport">Airport ICAO:</label>
-  <input type="text" id="airport" maxlength="4" placeholder="Enter ICAO code">
-  <div id="airportFullName"></div>
+          <label for="sid">SID:</label>
+          <select id="sid">
+            <!-- SID options -->
+          </select>
 
-  <label for="sid">SID:</label>
-  <select id="sid">
-    <option value="">--Select SID--</option>
-    <option value="COULT7">COULT SEVEN</option>
-    <option value="HESTIN6">HESTIN SIX (RNAV)</option>
-    <option value="KBREW2">KBREW TWO</option>
-    <option value="LEINY6">LEINY SIX (RNAV)</option>
-    <option value="MEADOW5">MEADOW LAKE FIVE</option>
-    <option value="MINNEAPOLIS9">MINNEAPOLIS NINE</option>
-    <option value="ORSKY3">ORSKY THREE</option>
-    <option value="ROCHESTER1">ROCHESTER ONE</option>
-    <option value="SCHEP1">SCHEP ONE</option>
-    <option value="SLAYER4">SLAYER FOUR (RNAV)</option>
-    <option value="SMERF7">SMERF SEVEN (RNAV)</option>
-    <option value="WLSTN7">WLSTN SEVEN</option>
-    <option value="ZMBRO7">ZMBRO SEVEN</option>
-  </select>
+          <label for="transition">Transition:</label>
+          <select id="transition">
+            <!-- Transition options -->
+          </select>
+        </div>
 
-  <label for="transition">Transition:</label>
-  <select id="transition">
-    <option value="">--Select Transition--</option>
-    <option value="LEINY">LEINY (LEINY6)</option>
-    <option value="SMERF">SMERF (SMERF7)</option>
-    <option value="FAR">FAR (KBREW2)</option>
-    <option value="KBREW">KBREW (KBREW2)</option>
-    <option value="GRB">GRB (WLSTN7)</option>
-    <option value="WLSTN">WLSTN (WLSTN7)</option>
-    <option value="DLL">DLL (COULT7)</option>
-    <option value="COULT">COULT (COULT7)</option>
-    <option value="ODI">ODI (ZMBRO7)</option>
-    <option value="ZMBRO">ZMBRO (ZMBRO7)</option>
-    <option value="ALO">ALO (ROCHESTER1)</option>
-    <option value="RST">RST (ROCHESTER1)</option>
-    <option value="ONTIJ">ONTIJ (ORSKY3)</option>
-    <option value="ORSKY">ORSKY (ORSKY3)</option>
-    <option value="RXANN">RXANN (SCHEP1)</option>
-    <option value="SCHEP">SCHEP (SCHEP1)</option>
-    <option value="DABOY">DABOY (HESTIN6)</option>
-    <option value="ZZEEE">ZZEEE (HESTIN6)</option>
-    <option value="HESTIN">HESTIN (HESTIN6)</option>
-    <option value="TEYOU">TEYOU (SLAYER4)</option>
-    <option value="SLAYR">SLAYR (SLAYER4)</option>
-    <option value="NONE">No Transition (MEADOW5)</option>
-  </select>
+        <div class="column">
+          <label for="climb">Climb:</label>
+          <input type="text" id="climb" placeholder="e.g., FL200">
 
-  <label for="climb">Climb:</label>
-  <input type="text" id="climb" placeholder="e.g., FL200">
+          <label for="depFreq">Departure Frequency:</label>
+          <input type="text" id="depFreq" placeholder="e.g., 119.1">
 
-  <label for="depFreq">Departure Frequency:</label>
-  <input type="text" id="depFreq" placeholder="e.g., 119.1">
+          <label for="squawk">Squawk:</label>
+          <input type="text" id="squawk" placeholder="e.g., 1234">
+        </div>
+      </div>
 
-  <label for="squawk">Squawk:</label>
-  <input type="text" id="squawk" placeholder="e.g., 1234">
-
-  <button id="generate">Generate Clearance</button>
-
-  <div id="output"></div>
+      <button id="generate">Generate Clearance</button>
+      <div id="output"></div>
+    </div>
+  </div>
 
   <script>
-    // AirportDB API integration
-    const airportInput = document.getElementById("airport");
-    const airportFullNameDiv = document.getElementById("airportFullName");
-    const apiToken = "e421959a7daa469a09abe75fdc48efea9e92a91e9cab4e2643e879a3b5c4140587b8b16db6f9ae0d84418414ec522555";
+    // Example JS for generating clearance
+    const generateBtn = document.getElementById('generate');
+    const outputDiv = document.getElementById('output');
 
-    airportInput.addEventListener("input", () => {
-      const icao = airportInput.value.toUpperCase();
+    generateBtn.addEventListener('click', () => {
+      const airport = document.getElementById('airport').value.toUpperCase();
+      const sid = document.getElementById('sid').value;
+      const transition = document.getElementById('transition').value;
+      const climb = document.getElementById('climb').value;
+      const depFreq = document.getElementById('depFreq').value;
+      const squawk = document.getElementById('squawk').value;
 
-      if (icao.length === 4) {
-        fetch(`https://airportdb.io/api/v1/airport/${icao}?apiToken=${apiToken}`)
-          .then(response => response.json())
-          .then(data => {
-            airportFullNameDiv.innerText = data.name || "Airport not found";
-          })
-          .catch(error => {
-            airportFullNameDiv.innerText = "Error fetching airport info";
-            console.error(error);
-          });
-      } else {
-        airportFullNameDiv.innerText = "";
-      }
-    });
-
-    // Generate clearance
-    document.getElementById("generate").addEventListener("click", () => {
-      const airport = airportInput.value.toUpperCase();
-      const airportName = airportFullNameDiv.innerText;
-      const sid = document.getElementById("sid").value;
-      const transition = document.getElementById("transition").value;
-      const climb = document.getElementById("climb").value;
-      const depFreq = document.getElementById("depFreq").value;
-      const squawk = document.getElementById("squawk").value;
-
-      let clearance = `Cleared to ${airportName || airport}\n`;
-      if (sid) clearance += `${sid} departure`;
-      if (transition && transition !== "NONE") clearance += `, ${transition} transition`;
-      clearance += `,\nthen as filed\n`;
-      if (climb) clearance += `Climb via SID except maintain ${climb}\n`;
-      if (depFreq) clearance += `Departure frequency ${depFreq}\n`;
-      if (squawk) clearance += `Squawk ${squawk}`;
-
-      document.getElementById("output").innerText = clearance;
+      outputDiv.textContent = 
+`Cleared to ${airport} airport
+${sid} departure, <${transition}>,
+then as filed
+Climb via SID except maintain ${climb}
+Departure frequency ${depFreq}
+Squawk ${squawk}`;
     });
   </script>
 </body>
