@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ATC Clearance Builder</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f4; }
+    h1 { text-align: center; }
+    .form-section { background: white; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+    label { display: block; margin-top: 10px; }
+    select, input { width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc; }
+    button { margin-top: 20px; padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; background: #0077cc; color: white; cursor: pointer; }
+    button:hover { background: #005fa3; }
+    #output { margin-top: 30px; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); white-space: pre-line; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <h1>ATC Clearance Builder</h1>
+  <div class="form-section">
+    <label>Cleared to (airport):</label>
+    <input type="text" id="airport" placeholder="Enter airport ICAO (e.g., KMSP)">
+
+    <label>Departure (SID):</label>
+    <select id="departure">
+      <option value="COULT SEVEN">COULT SEVEN</option>
+      <option value="HESTIN SIX (RNAV)">HESTIN SIX (RNAV)</option>
+      <option value="KBREW TWO">KBREW TWO</option>
+      <option value="LEINY SIX (RNAV)">LEINY SIX (RNAV)</option>
+      <option value="MEADOW LAKE FIVE">MEADOW LAKE FIVE</option>
+      <option value="MINNEAPOLIS NINE">MINNEAPOLIS NINE</option>
+      <option value="ORSKY THREE">ORSKY THREE</option>
+      <option value="ROCHESTER ONE">ROCHESTER ONE</option>
+      <option value="SCHEP ONE">SCHEP ONE</option>
+      <option value="SLAYER FOUR (RNAV)">SLAYER FOUR (RNAV)</option>
+      <option value="SMERF SEVEN (RNAV)">SMERF SEVEN (RNAV)</option>
+      <option value="WLSTN SEVEN">WLSTN SEVEN</option>
+      <option value="ZMBRO SEVEN">ZMBRO SEVEN</option>
+    </select>
+
+    <label>Transition:</label>
+    <select id="transition">
+      <option value="DLL (COULT SEVEN)">DLL (COULT SEVEN)</option>
+      <option value="COULT (COULT SEVEN)">COULT (COULT SEVEN)</option>
+      <option value="DABOY (HESTIN SIX)">DABOY (HESTIN SIX)</option>
+      <option value="ZZEEE (HESTIN SIX)">ZZEEE (HESTIN SIX)</option>
+      <option value="HESTIN (HESTIN SIX)">HESTIN (HESTIN SIX)</option>
+      <option value="FAR (KBREW TWO)">FAR (KBREW TWO)</option>
+      <option value="KBREW (KBREW TWO)">KBREW (KBREW TWO)</option>
+      <option value="LEINY (LEINY SIX)">LEINY (LEINY SIX)</option>
+      <option value="GRB (WLSTN SEVEN)">GRB (WLSTN SEVEN)</option>
+      <option value="WLSTN (WLSTN SEVEN)">WLSTN (WLSTN SEVEN)</option>
+      <option value="ODI (ZMBRO SEVEN)">ODI (ZMBRO SEVEN)</option>
+      <option value="ZMBRO (ZMBRO SEVEN)">ZMBRO (ZMBRO SEVEN)</option>
+      <option value="ALO (ROCHESTER ONE)">ALO (ROCHESTER ONE)</option>
+      <option value="RST (ROCHESTER ONE)">RST (ROCHESTER ONE)</option>
+      <option value="ONTIJ (ORSKY THREE)">ONTIJ (ORSKY THREE)</option>
+      <option value="ORSKY (ORSKY THREE)">ORSKY (ORSKY THREE)</option>
+      <option value="RXANN (SCHEP ONE)">RXANN (SCHEP ONE)</option>
+      <option value="SCHEP (SCHEP ONE)">SCHEP (SCHEP ONE)</option>
+      <option value="TEYOU (SLAYER FOUR)">TEYOU (SLAYER FOUR)</option>
+      <option value="SLAYR (SLAYER FOUR)">SLAYR (SLAYER FOUR)</option>
+      <option value="SMERF (SMERF SEVEN)">SMERF (SMERF SEVEN)</option>
+    </select>
+
+    <label>Initial Altitude:</label>
+    <input type="text" id="altitude" placeholder="e.g., 5000">
+
+    <label>Departure Frequency:</label>
+    <input type="text" id="frequency" placeholder="e.g., 124.85">
+
+    <label>Squawk:</label>
+    <input type="text" id="squawk" placeholder="e.g., 4567">
+
+    <button id="generateBtn">Generate Clearance</button>
+  </div>
+
+  <div id="output"></div>
+
+  <script>
+    document.getElementById("generateBtn").addEventListener("click", function() {
+      const airport = document.getElementById("airport").value.trim();
+      const departure = document.getElementById("departure").value;
+      const transition = document.getElementById("transition").value;
+      const altitude = document.getElementById("altitude").value.trim();
+      const frequency = document.getElementById("frequency").value.trim();
+      const squawk = document.getElementById("squawk").value.trim();
+
+      if (!airport || !altitude || !frequency || !squawk) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      const clearance = `Cleared to ${airport} airport
+${departure} departure${transition ? ', ' + transition + ' transition,' : ''}
+then as filed
+Climb via SID except maintain ${altitude} (expect final FLXXX)
+Departure frequency ${frequency}
+Squawk ${squawk}`;
+
+      document.getElementById("output").innerText = clearance;
+    });
+  </script>
+</body>
+</html>
