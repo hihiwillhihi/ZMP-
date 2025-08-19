@@ -1,1 +1,51 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f0f0f0;
+}
 
+h1 {
+  color: #004080;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+select, input {
+  width: 250px;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #004080;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #0066cc;
+}
+
+#output {
+  margin-top: 20px;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ccc;
+  white-space: pre-wrap;
+  font-family: monospace;
+}
+
+#airportFullName {
+  margin-top: 5px;
+  font-weight: bold;
+  color: #007bff;
+}
