@@ -247,25 +247,24 @@
         })
         .catch(err => { airportFullName.textContent = "Error fetching airport"; });
     });
-
-      // Generate clearance
-      generateBtn.addEventListener('click', () => {
-        const airport = airportFullName.textContent || airportInput.value.toUpperCase(); // Use fetched full name
-        const sid = document.getElementById('sid').value;
-        const transition = document.getElementById('transition').value;
-        const climb = document.getElementById('climb').value;
-        const depFreq = document.getElementById('depFreq').value;
-        const squawk = document.getElementById('squawk').value;
+    // Generate clearance
+    generateBtn.addEventListener('click', () => {
+      const airport = airportFullName.textContent || airportInput.value.toUpperCase(); // Use fetched full name
+      const sid = document.getElementById('sid').value;
+      const transition = document.getElementById('transition').value;
+      const climb = document.getElementById('climb').value;
+      const depFreq = document.getElementById('depFreq').value;
+      const squawk = document.getElementById('squawk').value;
       
-        const transitionFull = transitionMap[transition] || transition;
+      const transitionFull = transitionMap[transition] || transition;
       
-        outputDiv.textContent =
-      `Cleared to ${airport} airport
-      ${sid} departure, ${transitionFull} transition, then as filed
-      Climb via SID except maintain ${climb}
-      Departure frequency ${depFreq}
-      Squawk ${squawk}`;
-      });
+      outputDiv.textContent =
+    `Cleared to ${airport} airport
+    ${sid} departure, ${transitionFull} transition, then as filed
+    Climb via SID except maintain ${climb}
+    Departure frequency ${depFreq}
+    Squawk ${squawk}`;
+    });
   </script>
 </body>
 </html>
