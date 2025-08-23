@@ -204,7 +204,34 @@
       <div id="output"></div>
     </div>
   </div>
+  <script>
+    async function getDepFreq() {
+      const response = await fetch("https://api.vatsim.net/v2/atc/online");
+      const data = await response.json();
 
+      // Default frequency if neither is online
+      let depFreq = "Unicom";
+
+      // Check if MSP_11_CTR is online
+      const ctr = data.find(atc => atc.callsign === "MSP_11_CTR");
+      if (ctr) {
+        depFreq = "133.4";
+      }
+
+      // Otherwise check if MSP_S_APP is online
+      const app = data.find(atc => atc.callsign === "MSP_S_APP");
+      if (!ctr && app) {
+        depFreq = "135.475";
+      }
+
+      // Output result
+      document.getElementById("output").textContent = `Departure frequency ${depFreq}`;
+      return depFreq;
+    }
+
+    // Run on page load
+    getDepFreq();
+  </script>
   <script>
     const airportInput = document.getElementById('airport');
     const airportFullName = document.getElementById('airportFullName');
