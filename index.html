@@ -214,27 +214,26 @@
 
     // Mapping of transitions to full names without SID
     const transitionMap = {
-      "DLL (COULT7)": "Dells transition, then as filed",
-      "FAR (KBREW2)": "Fargo transition, then as filed",
-      "KBREW (KBREW2)": "KBREW transition, then as filed",
-      "LEINY (LEINY6)": "Leiny transition, then as filed",
-      "TEYOU (SLAYR4)": "TEYOU transition, then as filed",
-      "SLAYR (SLAYR4)": "SLAYR transition, then as filed",
-      "SMERF (SMERF7)": "SMERF transition, then as filed",
-      "GRB (WLSTN7)": "Green Bay transition, then as filed",
-      "WLSTN (WLSTN7)": "WLSTN transition, then as filed",
-      "ODI (ZMBRO7)": "Nodine transition, then as filed",
-      "ZMBRO (ZMBRO7)": "ZMBRO transition, then as filed",
-      "ALO (ROCHESTER1)": "Waterloo transition, then as filed",
-      "RST (ROCHESTER1)": "RST, then as filed",
-      "ONTIJ (ORSKY3)": "ONTIJ transition, then as filed",
-      "ORSKY (ORSKY3)": "ORSKY transition, then as filed",
-      "RXANN (SCHEP1)": "RXANN transition, then as filed",
-      "SCHEP (SCHEP1)": "SCHEP transition, then as filed",
-      "HESTIN (HESTIN6)": "HESTIN transition, then as filed",
-      "DABOY (HESTIN6)": "DABOY transition, then as filed",
-      "ZZEEE (HESTIN6)": "ZZEEE transition, then as filed",
-      "MSP9": () => `Radar vectors ${document.getElementById('rdrv').value}, then as filed`
+      "DLL (COULT7)": "Dells transition",
+      "FAR (KBREW2)": "Fargo transition",
+      "KBREW (KBREW2)": "KBREW transition",
+      "LEINY (LEINY6)": "Leiny transition",
+      "TEYOU (SLAYR4)": "TEYOU transition",
+      "SLAYR (SLAYR4)": "SLAYR transition",
+      "SMERF (SMERF7)": "SMERF transition",
+      "GRB (WLSTN7)": "Green Bay transition",
+      "WLSTN (WLSTN7)": "WLSTN transition",
+      "ODI (ZMBRO7)": "Nodine transition",
+      "ZMBRO (ZMBRO7)": "ZMBRO transition",
+      "ALO (ROCHESTER1)": "Waterloo transition",
+      "RST (ROCHESTER1)": "RST",
+      "ONTIJ (ORSKY3)": "ONTIJ transition",
+      "ORSKY (ORSKY3)": "ORSKY transition",
+      "RXANN (SCHEP1)": "RXANN transition",
+      "SCHEP (SCHEP1)": "SCHEP transition",
+      "DABOY (HESTIN6)": "DABOY transition",
+      "ZZEEE (HESTIN6)": "ZZEEE transition",
+      "MSP9": "Radar vectors"
     };
 
     // Fetch full airport name on input blur
@@ -266,7 +265,7 @@
         
         outputDiv.textContent =
      `Cleared to ${airport} airport
-      ${sid} departure, ${transitionFull}
+      ${sid} departure, ${transitionFull}${rdrv}, then as filed
       Climb via SID except maintain ${climb}
       Departure frequency ${depFreq}
       Squawk ${squawk}`;
