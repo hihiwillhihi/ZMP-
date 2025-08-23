@@ -234,7 +234,7 @@
       "HESTIN (HESTIN6)": "HESTIN transition, then as filed",
       "DABOY (HESTIN6)": "DABOY transition, then as filed",
       "ZZEEE (HESTIN6)": "ZZEEE transition, then as filed",
-      "MSP9": 'Radar vectors ${rdrv}, then as filed'
+      "MSP9": () => `Radar vectors ${document.getElementById('rdrv').value}, then as filed`
     };
 
     // Fetch full airport name on input blur
