@@ -224,35 +224,7 @@
       <div id="output"></div>
     </div>
   </div>
-  <script>
-    async function setDepFreq() {
-      try {
-        const res = await fetch("https://api.vatsim.net/v2/atc/online");
-        const data = await res.json();
 
-        // Find controllers
-        const mspApp = data.find(atc => atc.callsign === "MSP_S_APP");
-        const mspCtr = data.find(atc => atc.callsign === "MSP_11_CTR");
-
-        let depFreq = "Unicom"; // default
-
-        if (mspCtr) {
-          depFreq = "133.4";
-        } else if (mspApp) {
-          depFreq = "135.475";
-        }
-
-        // Set it in the page
-        document.getElementById("depFreq").textContent = depFreq;
-
-      } catch (err) {
-        console.error("Error fetching VATSIM data:", err);
-        document.getElementById("depFreq").textContent = "Unicom";
-      }
-    }
-
-    setDepFreq();
-  </script>
   <script>
     const airportInput = document.getElementById('airport');
     const airportFullName = document.getElementById('airportFullName');
