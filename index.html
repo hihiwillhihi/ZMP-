@@ -205,8 +205,8 @@
 
           <label for="depFreq">Departure Frequency:</label>
           <select id="depFreq">
-            <option value="1247">1247</option>
-            <option value="1248">1248</option>
+            <option value="1247">124.7</option>
+            <option value="1248">125.75</option>
           </select>
 
           <label for="station">Station:</label>
@@ -287,7 +287,7 @@
         const transitionFull = transitionMap[transition] || transition;
         
         outputDiv.textContent =
-     `${callsign}, Minneapolis ${station} Cleared to ${airport}
+     /`${callsign}, Minneapolis ${station} Cleared to ${airport}
       ${sid} departure, ${transitionFull} ${rdrv}, then as filed
       Climb via SID except maintain ${climb} expect Flight Level ${altitude} 10 minutes after departure
       Departure frequency ${depFreq}
