@@ -200,7 +200,9 @@
           <input type="text" id="altitude" placeholder="e.g., 320">
 
           <label for="depFreq">Departure Frequency:</label>
-          <input type="text" id="depFreq" placeholder="e.g., 135.475 - App/133.4 - Ctr">
+          <select id="depFreq">
+            <option value="124.7">124.7</option>
+          </select>
 
           <label for="station">Station:</label>
           <select id="station">
@@ -310,7 +312,7 @@
         outputDiv.textContent =
      `${callsign}, Minneapolis ${station} Cleared to ${airport}
       ${sid} departure, ${transitionFull} ${rdrv}, then as filed
-      Climb via SID except maintain ${climb} expect Flight Level ${altitude} 1 0 minutes after departure
+      Climb via SID except maintain ${climb} expect Flight Level ${altitude} 10 minutes after departure
       Departure frequency ${depFreq}
       Squawk ${squawk}`;
       });
