@@ -189,6 +189,10 @@
         </div>
 
         <div class="column">
+
+          <label for="callsign">Callsign:</label>
+          <input type="text" id="callsign" placeholder="e.g., Delta-123">
+          
           <label for="climb">Climb:</label>
           <input type="text" id="climb" placeholder="e.g., 7000">
 
@@ -197,6 +201,9 @@
 
           <label for="depFreq">Departure Frequency:</label>
           <input type="text" id="depFreq" placeholder="e.g., 135.475 - App/133.4 - Ctr">
+
+          <label for="station">Station:</label>
+          <input type="text" id="station" placeholder="e.g., Clearance Delivery">
 
           <label for="squawk">Squawk:</label>
           <input type="text" id="squawk" placeholder="e.g., 1234">
@@ -296,7 +303,7 @@
         const transitionFull = transitionMap[transition] || transition;
         
         outputDiv.textContent =
-     `Cleared to the ${airport}
+     `${callsign}, ${station} Cleared to ${airport}
       ${sid} departure, ${transitionFull} ${rdrv}, then as filed
       Climb via SID except maintain ${climb} expect Flight Level ${altitude} 1 0 minutes after departure
       Departure frequency ${depFreq}
